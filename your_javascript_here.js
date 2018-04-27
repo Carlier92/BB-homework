@@ -1,11 +1,14 @@
 // Variables
-const heroo = {
-};
-
-
+const hero = {
+    name: 'Relearya',
+    heroic: true,
+    inventory: [],
+    health: 100,
+    weapon: {
+        type: "Katana",
+        damage: 25
+    }
+}
 // Game logic
 
 // UI
-
-
-const hero = Object.create(heroo);
