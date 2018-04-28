@@ -43,38 +43,48 @@ const defender = {
     }
 }
 
-var item =  {
-    type: "mesje",
+var item = {
+    type: "knife",
     damage: 2
 }
 
+var index = 0
+
 // Game logic
 function rest(creature) {
-    creature.health += 10
+    creature.health = 10
     return creature
 }
-
-// console.log(creature.health)
-// rest(creature) // WORKS
-// console.log(creature.health)
 
 function pickUpItem(creature, item) {
     creature.inventory.push(item)
     return creature
 }
 
-// console.log(creature.inventory)
-// pickUpItem(creature, item)//item is nog niet defined //WORKS
-// console.log(creature.inventory)
-
 function dealDamage(attacker, defender) {
     defender.health -= attacker.weapon.damage
     return defender
 }
-// console.log(defender.health)
-// dealDamage(attacker, defender) //WORKS
-// console.log(defender.health)
+
+function equipWeapon(creature, index){
+    creature.weapon = creature.inventory[index]
+    creature.inventory.splice(index, 1)
+    return creature
+}
 
 
+// console.log(creature.inventory)
+
+function doBattle(heroicCreature, creature){
+
+}
 
 // UI
+
+
+
+
+// rest(creature) // WORKS
+// dealDamage(attacker, defender) //doesnt subtract //WORKS
+// pickUpItem(creature, item)//item is nog niet defined //WORKS
+// equipWeapon(creature, index)//index is not defined
