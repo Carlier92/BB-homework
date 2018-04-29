@@ -58,8 +58,6 @@ var item = {
 
 var index = 0
 
-
-
 // Game logic
 function rest(creature) {
     console.log(`before rest: ${creature.health}`)
@@ -118,8 +116,27 @@ function doBattle(heroicCreature, creature){
     }
 }
 
-function displayStats(){
-    
+function displayStats(creature){
+    var nameElement = document.createElement('div')
+    nameElement.innerText = "Name: " + creature.name
+
+    var healthElement = document.createElement('div')
+    healthElement.innerText = "Health: " + creature.health
+
+    var weaponTypeElement = document.createElement('div')
+    weaponTypeElement.innerText = "Weapon type: " + creature.weapon.type
+
+    var weaponDamageElement = document.createElement('div')
+    weaponDamageElement.innerText = "Weapon damage: " + creature.weapon.damage
+
+    var statsElement = document.createElement('div')
+
+    statsElement.appendChild(nameElement)
+    statsElement.appendChild(healthElement)
+    statsElement.appendChild(weaponTypeElement)
+    statsElement.appendChild(weaponDamageElement)
+
+    document.getElementById('stats-overview').appendChild(statsElement)
 }
 
 
@@ -142,8 +159,4 @@ document.getElementById("backpack").addEventListener("click", function(){
     equipWeapon(hero, askIndex)
 })
 
-// rest(creature) // WORKS
-// dealDamage(attacker, defender) //doesnt subtract //WORKS
-// pickUpItem(creature, item)//item is nog niet defined //WORKS
-// equipWeapon(creature, index)//index is not defined
-// doBattle(hero, creature)
+displayStats(hero)
