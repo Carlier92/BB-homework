@@ -76,8 +76,34 @@ function equipWeapon(creature, index){
 // console.log(creature.inventory)
 
 function doBattle(heroicCreature, creature){
+    if (!heroicCreature.heroic) {
+        return null
+    }
 
+    while (heroicCreature.health > 0 && creature.health > 0) {
+
+        if (heroicCreature.health > 0) {
+            dealDamage(heroicCreature, creature)
+        }
+
+        if (creature.health > 0) {
+            dealDamage(creature, heroicCreature)
+        }
+
+        if (heroicCreature.health > 0 && creature.health <= 0) {
+            alert(`${heroicCreature.name} won!`)
+            return heroicCreature
+
+
+        } else if (creature.health > 0 && heroicCreature.health <= 0) {
+            alert('Ahw.. You died!')
+            return creature
+        } else if (heroicCreature.health <= 0 && creature.health <= 0) {
+            alert('They both died!')
+        }
+    }
 }
+
 
 // UI
 
@@ -88,3 +114,4 @@ function doBattle(heroicCreature, creature){
 // dealDamage(attacker, defender) //doesnt subtract //WORKS
 // pickUpItem(creature, item)//item is nog niet defined //WORKS
 // equipWeapon(creature, index)//index is not defined
+doBattle(hero, creature)
