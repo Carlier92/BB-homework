@@ -58,18 +58,20 @@ var item = {
 
 var index = 0
 
+
+
 // Game logic
 function rest(creature) {
-    console.log(`before rest: ${creature.health}`);
+    console.log(`before rest: ${creature.health}`)
     creature.health = 10
-    console.log(`after rest: ${creature.health}`);
+    console.log(`after rest: ${creature.health}`)
     return creature
 }
 
 function pickUpItem(creature, item) {
-    console.log(`before pickup: ${creature.inventory}`);
+    console.log("before pickup: ", creature.inventory)
     creature.inventory.push(item)
-    console.log(`after pickup: ${creature.inventory}`);
+    console.log("after pickup: ",creature.inventory)
     return creature
 }
 
@@ -79,13 +81,12 @@ function dealDamage(attacker, defender) {
 }
 
 function equipWeapon(creature, index){
+    console.log("before askIndex: ",creature.weapon)
     creature.weapon = creature.inventory[index]
     creature.inventory.splice(index, 1)
+    console.log("after askIndex: ", creature.weapon)
     return creature
 }
-
-
-// console.log(creature.inventory)
 
 function doBattle(heroicCreature, creature){
     if (!heroicCreature.heroic) {
@@ -117,8 +118,13 @@ function doBattle(heroicCreature, creature){
     }
 }
 
+function displayStats(){
+    
+}
+
+
 // UI
-//
+
 document.getElementById("innRest").addEventListener("click", function(){
     rest(hero)
 })
@@ -129,6 +135,11 @@ document.getElementById("sword").addEventListener("click", function(){
 
 document.getElementById("enemy").addEventListener("click", function(){
     doBattle(hero, enemy)
+})
+
+document.getElementById("backpack").addEventListener("click", function(){
+    var askIndex = window.prompt('what index weapon do you want to equip?')
+    equipWeapon(hero, askIndex)
 })
 
 // rest(creature) // WORKS
