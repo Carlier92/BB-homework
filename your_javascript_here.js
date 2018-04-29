@@ -43,6 +43,14 @@ const defender = {
     }
 }
 
+const enemy = {
+    health: 70,
+    weapon: {
+        type: "Claw",
+        damage: 3
+    }
+}
+
 var item = {
     type: "knife",
     damage: 2
@@ -52,12 +60,16 @@ var index = 0
 
 // Game logic
 function rest(creature) {
+    console.log(`before rest: ${creature.health}`);
     creature.health = 10
+    console.log(`after rest: ${creature.health}`);
     return creature
 }
 
 function pickUpItem(creature, item) {
+    console.log(`before pickup: ${creature.inventory}`);
     creature.inventory.push(item)
+    console.log(`after pickup: ${creature.inventory}`);
     return creature
 }
 
@@ -79,7 +91,7 @@ function doBattle(heroicCreature, creature){
     if (!heroicCreature.heroic) {
         return null
     }
-
+    console.log(`before battle heroic creature health: ${heroicCreature.health}`);
     while (heroicCreature.health > 0 && creature.health > 0) {
 
         if (heroicCreature.health > 0) {
@@ -101,17 +113,26 @@ function doBattle(heroicCreature, creature){
         } else if (heroicCreature.health <= 0 && creature.health <= 0) {
             alert('They both died!')
         }
+        console.log(`after battle heroic creature health: ${heroicCreature.health}`);
     }
 }
 
-
 // UI
+//
+document.getElementById("innRest").addEventListener("click", function(){
+    rest(hero)
+})
 
+document.getElementById("sword").addEventListener("click", function(){
+    pickUpItem(hero, item)
+})
 
-
+document.getElementById("enemy").addEventListener("click", function(){
+    doBattle(hero, enemy)
+})
 
 // rest(creature) // WORKS
 // dealDamage(attacker, defender) //doesnt subtract //WORKS
 // pickUpItem(creature, item)//item is nog niet defined //WORKS
 // equipWeapon(creature, index)//index is not defined
-doBattle(hero, creature)
+// doBattle(hero, creature)
